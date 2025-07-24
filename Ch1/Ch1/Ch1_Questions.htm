@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapter 1 – Questions</title>
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
+    }
+
+    body {
+      font-family: 'OpenDyslexic', Arial, sans-serif;
+      font-size: 15px;
+      background-color: #121212;
+      color: #f1f1f1;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1abc9c;
+    }
+
+    .question {
+      margin-bottom: 2rem;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    .options label {
+      display: block;
+      margin-left: 1rem;
+    }
+
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #1e1e1e;
+      border-left: 4px solid #1abc9c;
+    }
+
+    button {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #1abc9c;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #17a589;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chapter 1 – The Nice Guy Syndrome</h1>
+
+  <form id="quizForm">
+    <div class="question">
+      <p>1. What is Jason’s main concern in his life as described in Chapter 1?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> (A) His sex life</label>
+        <label><input type="radio" name="q1" value="B"> (B) His friendships</label>
+        <label><input type="radio" name="q1" value="C"> (C) His finances</label>
+        <label><input type="radio" name="q1" value="D"> (D) His Career</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>2. What common trait do Omar, Todd, and Bill share?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> (A) They are all Athletes</label>
+        <label><input type="radio" name="q2" value="B"> (B) They all seek to please others</label>
+        <label><input type="radio" name="q2" value="C"> (C) They have a fear of heights</label>
+        <label><input type="radio" name="q2" value="D"> (D) They all have successful careers</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>3. What is a characteristic of Nice Guys according to Chapter 1?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> (A) They are excellent at setting boundaries</label>
+        <label><input type="radio" name="q3" value="B"> (B) They are always honest</label>
+        <label><input type="radio" name="q3" value="C"> (C) They never seek approval</label>
+        <label><input type="radio" name="q3" value="D"> (D) They often avoid Conflict</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>4. What is a consequence of the Nice Guy Syndrome?</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> (A) Having a perfect life</label>
+        <label><input type="radio" name="q4" value="B"> (B) Experiencing frustration and resentment</label>
+        <label><input type="radio" name="q4" value="C"> (C) Being universally loved</label>
+        <label><input type="radio" name="q4" value="D"> (D) Achieving all personal goals</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>5. What is one goal of becoming an integrated male?</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> (A) To gain everyone’s approval</label>
+        <label><input type="radio" name="q5" value="B"> (B) To avoid all conflicts</label>
+        <label><input type="radio" name="q5" value="C"> (C) To embrace all aspects of one’s self</label>
+        <label><input type="radio" name="q5" value="D"> (D) To eliminate all personal flaws</label>
+      </div>
+    </div>
+
+    <button type="button" onclick="checkAnswers()">Check Answers</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: 'A',
+        q2: 'B',
+        q3: 'D',
+        q4: 'B',
+        q5: 'C'
+      };
+
+      let score = 0;
+      let output = '<h3>Results:</h3><ul>';
+
+      for (let key in answers) {
+        const selected = document.querySelector('input[name="' + key + '"]:checked');
+        if (selected) {
+          const isCorrect = selected.value === answers[key];
+          if (isCorrect) score++;
+          output += '<li>Question ' + key.slice(1) + ': ' + (isCorrect ? '✅ Correct' : '❌ Incorrect') + '</li>';
+        } else {
+          output += '<li>Question ' + key.slice(1) + ': ❌ No answer selected</li>';
+        }
+      }
+
+      output += '</ul><p><strong>Score: ' + score + ' / 5</strong></p>';
+      document.getElementById('result').innerHTML = output;
+    }
+  </script>
+</body>
+</html>
